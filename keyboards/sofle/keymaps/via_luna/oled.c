@@ -415,6 +415,13 @@ static void print_status_narrow(void) {
     oled_set_cursor(0,8);
     oled_write("CPSLK", led_usb_state.caps_lock);
 
+    oled_set_cursor(0,9);
+
+    oled_write_char('S', get_mods() & MOD_MASK_SHIFT);
+    oled_write_char('C', get_mods() & MOD_MASK_CTRL);
+    oled_write_char('A', get_mods() & MOD_MASK_ALT);
+    oled_write_char('G', get_mods() & MOD_MASK_GUI);
+
     /* KEYBOARD PET RENDER START */
 
     render_luna(0,13);
