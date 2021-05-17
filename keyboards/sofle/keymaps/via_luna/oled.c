@@ -56,10 +56,10 @@ static void print_status_narrow(void) {
 
     oled_set_cursor(0,6);
 
-        switch (get_highest_layer(layer_state)) {
+    switch (get_highest_layer(layer_state)) {
         case _QWERTY:
         case _GAMING:
-            oled_write_ln("Base", false);
+            oled_write("Base\n", false);
             break;
         case _LOWER:
             oled_write_ln("Lower", false);
@@ -75,14 +75,7 @@ static void print_status_narrow(void) {
     }
 
     oled_set_cursor(0,8);
-    oled_write_ln("CPSLK", host_keyboard_led_state().caps_lock);
-
-    oled_set_cursor(0,9);
-
-    oled_write_char('S', get_mods() & MOD_MASK_SHIFT);
-    oled_write_char('C', get_mods() & MOD_MASK_CTRL);
-    oled_write_char('A', get_mods() & MOD_MASK_ALT);
-    oled_write_char('G', get_mods() & MOD_MASK_GUI);
+    oled_write_ln_P(PSTR("CPSLK"), host_keyboard_led_state().caps_lock);
 
     /* KEYBOARD PET RENDER START */
 
