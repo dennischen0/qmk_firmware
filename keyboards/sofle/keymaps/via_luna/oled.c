@@ -42,6 +42,9 @@ static void print_status_narrow(void) {
         case _QWERTY:
             oled_write_ln_P(PSTR("QWRTY"), false);
             break;
+        case _COLEMAK:
+            oled_write_ln_P(PSTR("CLMK"), false);
+            break;
         case _GAMING:
             oled_write_ln_P(PSTR("GAME"), false);
             break;
@@ -58,6 +61,7 @@ static void print_status_narrow(void) {
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
+        case _COLEMAK:
         case _GAMING:
             oled_write("Base\n", false);
             break;
