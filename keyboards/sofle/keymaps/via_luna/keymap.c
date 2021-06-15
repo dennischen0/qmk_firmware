@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |  PLAY |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  \   |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LOWER|RAISE | /Space  /       \Enter \  | [    | ]    | -    | =    |
+ *            | LGUI | LAlt | [    |LOWER | /Space  /       \Enter \  |RAISE | ]    | -    | =    |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
   KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,       KC_MPLY, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MT(MOD_RSFT, KC_BSLS), \
-        KC_LGUI, KC_LALT, MO(_LOWER), MO(_RAISE), KC_SPC,               KC_ENT,  KC_LBRC, KC_RBRC, KC_MINS, KC_EQL  \
+        KC_LGUI, KC_LALT, KC_LBRC, MO(_LOWER), KC_SPC,                     KC_ENT,  MO(_RAISE), KC_RBRC, KC_MINS, KC_EQL  \
 ),
 /*
  * COLEMAK
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |  PLAY |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   K  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LOWER|RAISE | /Space  /       \Enter \  | [    | ]    | -    | =    |
+ *            | LGUI | LAlt | [    |LOWER | /Space  /       \Enter \  |RAISE | ]    | -    | =    |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_G,                      KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN,  KC_BSPC, \
   KC_LCTL,  KC_A,   KC_R,    KC_S,    KC_T,    KC_D,                      KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  KC_QUOT, \
   KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE,      KC_MPLY,KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  MT(MOD_RSFT, KC_BSLS), \
-        KC_LGUI, KC_LALT, MO(_LOWER), MO(_RAISE), KC_SPC,               KC_ENT,  KC_LBRC, KC_RBRC, KC_MINS, KC_EQL  \
+        KC_LGUI, KC_LALT, KC_LBRC, MO(_LOWER), KC_SPC,               KC_ENT,  MO(_RAISE), KC_RBRC, KC_MINS, KC_EQL  \
 ),
 /*
  * GAMING
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   |  |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  |     |
+ * |      |  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            |      |      |      |      | /       /       \      \  |      |      |      |      |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_F12,  \
   _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PIPE, \
   _______, KC_EQL,  KC_MINS, KC_PLUS, KC_LCBR, KC_RCBR, _______,       _______, KC_LBRC, KC_RBRC, KC_SCLN, KC_COLN, KC_BSLS, XXXXXXX, \
-              _______, _______, _______, _______, _______,                 _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX\
+              _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______\
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_INS,  KC_PSCR, KC_APP,  XXXXXXX, XXXXXXX,                           KC_PGUP, XXXXXXX, KC_UP,   KC_LBRC, KC_RBRC, KC_DEL,  \
   _______, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, KC_CAPS,                           KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_HOME, \
   _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PSTE, XXXXXXX, _______,         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_END,  \
-              _______, _______, _______, _______, _______,                   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
+              _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______ \
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |MACWIN|      |      |      |-------.    ,-------|      | VOLDO| MUTE | VOLUP|      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      | PREV | PLAY | NEXT |      |      |
+ * |      |      |      | CLMK |      |      |-------|    |-------|      | PREV | PLAY | NEXT |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            |      |      |      |      | /       /       \      \  |      |      |      |      |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
