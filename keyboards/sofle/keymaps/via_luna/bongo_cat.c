@@ -1,4 +1,4 @@
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 
 /* Animation bit by j-inc https://github.com/qmk/qmk_firmware/tree/master/keyboards/kyria/keymaps/j-inc */
 // WPM-responsive animation stuff here

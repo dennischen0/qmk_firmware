@@ -16,7 +16,7 @@
   */
 
 //Sets up what the OLED screens display.
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 #include <stdio.h>
 #include "images.c"
 #include "luna.c"
@@ -108,12 +108,13 @@ static void print_slave_narrow(void) {
     oled_write(" wpm", false);
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
     if (is_keyboard_master()) {
         print_status_narrow();
     } else {
         print_slave_narrow();
     }
+    return false;
 }
 
 #endif

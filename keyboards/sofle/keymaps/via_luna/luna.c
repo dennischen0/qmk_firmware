@@ -1,4 +1,4 @@
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 /* KEYBOARD PET START */
 
 /* settings */
