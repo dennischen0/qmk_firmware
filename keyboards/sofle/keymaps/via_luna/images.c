@@ -1,4 +1,4 @@
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 
 /* 32 * 14 os logos */
 static const char PROGMEM windows_logo[] = {
