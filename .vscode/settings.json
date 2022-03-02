@@ -17,7 +17,11 @@
         "xstddef": "c",
         "type_traits": "c",
         "utility": "c",
-        "ranges": "c"
+        "ranges": "c",
+        "chrono": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
     },
     "[markdown]": {
         "editor.trimAutoWhitespace": false,
