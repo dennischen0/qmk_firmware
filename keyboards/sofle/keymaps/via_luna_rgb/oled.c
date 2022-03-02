@@ -16,24 +16,43 @@
   */
 
 //Sets up what the OLED screens display.
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 #include <stdio.h>
 #include "images.c"
+#ifdef LUNA_ENABLE
 #include "luna.c"
+#endif
+#ifdef BONGO_CAT_ENABLE
 #include "bongo_cat.c"
+#endif
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
 
+#define LOGO_BYTES 16 * 4
+
+#if defined(LUNA_ENABLE) || defined(BONGO_CAT_ENABLE)
+uint32_t anim_sleep = 0;
+static void oled_sleep(void) {
+    if(get_current_wpm() > 0) {
+        oled_on();
+        anim_sleep = timer_read32();
+    } else if(timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
+        oled_off();
+    }
+}
+#endif
+
+#ifdef LEFT_BOARD
 static void print_status_narrow(void) {
     // Print current mode
     oled_set_cursor(0,0);
 
     if (keymap_config.swap_lctl_lgui) {
-        oled_write_raw_P(mac_logo, sizeof(mac_logo));
+        oled_write_compressed_P(mac_logo_block_x_map, mac_logo_block_x_list, 0, LOGO_BYTES);
     } else {
-        oled_write_raw_P(windows_logo, sizeof(windows_logo));
+        oled_write_compressed_P(windows_logo_block_x_map, windows_logo_block_x_list, 0, LOGO_BYTES);
     }
 
     oled_set_cursor(0,3);
@@ -41,9 +60,6 @@ static void print_status_narrow(void) {
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
             oled_write_ln_P(PSTR("QWRTY"), false);
-            break;
-        case _COLEMAK:
-            oled_write_ln_P(PSTR("CLMK"), false);
             break;
         case _GAMING:
             oled_write_ln_P(PSTR("GAME"), false);
@@ -61,7 +77,6 @@ static void print_status_narrow(void) {
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-        case _COLEMAK:
         case _GAMING:
             oled_write("Base\n", false);
             break;
@@ -78,26 +93,30 @@ static void print_status_narrow(void) {
             oled_write_ln("Undef", false);
     }
 
-    oled_set_cursor(0,9);
+    oled_set_cursor(0,8);
 
     oled_write_char('S', get_mods() & MOD_MASK_SHIFT);
     oled_write_char('C', get_mods() & MOD_MASK_CTRL);
     oled_write_char('A', get_mods() & MOD_MASK_ALT);
     oled_write_char('G', get_mods() & MOD_MASK_GUI);
 
-    oled_set_cursor(0,11);
+    oled_set_cursor(0,9);
 
     oled_write_ln_P(PSTR("CPSLK"), host_keyboard_led_state().caps_lock);
 
     /* KEYBOARD PET RENDER START */
-
+#ifdef LUNA_ENABLE
     render_luna(0,13);
-
+#endif
     /* KEYBOARD PET RENDER END */
 }
+#endif
 
+#ifdef RIGHT_BOARD
 static void print_slave_narrow(void) {
-    render_bongo();
+    #ifdef BONGO_CAT_ENABLE
+        render_bongo();
+    #endif
     /* wpm counter */
     char wpm_str[8];
     oled_set_cursor(0,14);
@@ -107,13 +126,22 @@ static void print_slave_narrow(void) {
     oled_set_cursor(0,15);
     oled_write(" wpm", false);
 }
+#endif
 
-void oled_task_user(void) {
-    if (is_keyboard_master()) {
-        print_status_narrow();
-    } else {
-        print_slave_narrow();
-    }
+bool oled_task_user(void) {
+#if defined(LUNA_ENABLE) || defined(BONGO_CAT_ENABLE)
+    oled_sleep();
+#endif
+#ifdef LEFT_BOARD
+    print_status_narrow();
+#endif
+
+#ifdef RIGHT_BOARD
+    print_slave_narrow();
+#endif
+    return false;
 }
+
+
 
 #endif
