@@ -30,8 +30,8 @@ for more options.
 
 ///https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
 
-#define MASTER_LEFT
-#define RIGHT_BOARD
+#define EE_HANDS
+#define LEFT_BOARD
 
 #ifdef LEFT_BOARD
     #ifdef OLED_ENABLE
@@ -47,7 +47,6 @@ for more options.
 
 #define SPLIT_WPM_ENABLE
 #define SPLIT_OLED_ENABLE
-#define OLED_TIMEOUT 5000
 #define OLED_FADE_OUT
 #define OLED_FADE_OUT_INTERVAL 1
 
@@ -66,6 +65,8 @@ for more options.
 #define RGB_DI_PIN D3
 
 #ifdef RGB_MATRIX_ENABLE
+#define RGB_DISABLE_WHEN_USB_SUSPENDED // turn off effects when suspended
+#define SPLIT_LAYER_STATE_ENABLE
 
 #define RGBLED_NUM 72
 #define DRIVER_LED_TOTAL RGBLED_NUM
@@ -74,11 +75,15 @@ for more options.
 #define RGB_MATRIX_SAT_STEP 8
 #define RGB_MATRIX_VAL_STEP 8
 #define RGB_MATRIX_SPD_STEP 10
+#define RGB_MATRIX_STARTUP_SPD 20
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_SPLIT {36,36}
 #define SPLIT_TRANSPORT_MIRROR
-#define ENABLE_RGB_MATRIX_RAINDROPS
+// #define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
+#define ENABLE_RGB_MATRIX_MULTISPLASH
+#define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_MULTISPLASH // Sets the default mode, if none has been set
+
 #endif
 
 
