@@ -1,4 +1,4 @@
-#include <stdio.h>
+#ifdef RGBLIGHT_ENABLE
 #define INDICATOR_BRIGHTNESS 30
 
 #define HSV_OVERRIDE_HELP(h, s, v, Override) h, s , Override
@@ -12,7 +12,6 @@
 	{34, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
     {36+0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}
 
-#ifdef RGBLIGHT_ENABLE
 char layer_state_str[70];
 // Now define the array of layers. Later layers take precedence
 
@@ -34,5 +33,42 @@ void keyboard_post_init_user(void) {
 
 	rgblight_mode(10);// haven't found a way to set this in a more useful way
 
+}
+#endif
+
+#ifdef RGB_MATRIX_ENABLE
+void rgb_matrix_indicators_kb() {
+
+    RGB rgb;
+    
+    
+    switch(get_highest_layer(layer_state|default_layer_state)) {
+        case _RAISE:
+        {
+            HSV hsv = {30, 218, 100};
+            rgb = hsv_to_rgb(hsv);
+            break;
+        }
+        case _LOWER:
+        {
+            HSV hsv = {123,  90, 100};
+            rgb = hsv_to_rgb(hsv);           
+            break;
+        }
+        case _ADJUST:
+        {
+            HSV hsv = {191, 255, 100};
+            rgb = hsv_to_rgb(hsv);            
+            break;
+        }
+        default:
+        {
+            HSV hsv = {106, 255, 100};
+            rgb = hsv_to_rgb(hsv);
+            break;
+        }
+    }
+    rgb_matrix_set_color(0, rgb.r, rgb.g, rgb.b);
+    rgb_matrix_set_color(36, rgb.r, rgb.g, rgb.b);
 }
 #endif

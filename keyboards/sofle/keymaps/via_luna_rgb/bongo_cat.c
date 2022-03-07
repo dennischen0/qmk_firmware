@@ -1,5 +1,5 @@
 #ifdef BONGO_CAT_ENABLE
-
+#include "images.c"
 /* Animation bit by j-inc https://github.com/qmk/qmk_firmware/tree/master/keyboards/kyria/keymaps/j-inc */
 // WPM-responsive animation stuff here
 #define IDLE_FRAMES 5

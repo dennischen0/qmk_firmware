@@ -1,8 +1,8 @@
 #include "main.h"
-#include "config.h"
 #include "oled.c"
 #include "encoder.c"
 #include "rgb.c"
+#include "trackball.c"
 
 bool is_alt_tab_active = false; // ADD this near the begining of keymap.c
 uint16_t alt_tab_timer = 0;     // we will be using them soon.
@@ -37,7 +37,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
         /* KEYBOARD PET STATUS END */
-
+        case KC_MOUSE:
+            if (record->event.pressed) {
+                layer_on(_MOUSE);
+            } else {
+                layer_off(_MOUSE);
+            }
+            return false;
         case KC_4:
             if (record->event.pressed) {
                 if ((get_mods() & MOD_BIT(KC_LALT)) == MOD_BIT(KC_LALT)) {
@@ -81,22 +87,4 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	// rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
 #endif
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
-
-
-void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    switch(get_highest_layer(layer_state|default_layer_state)) {
-        case _RAISE:
-            rgb_matrix_set_color(36, RGB_BLUE);
-            break;
-        case _LOWER:
-            rgb_matrix_set_color(0, RGB_YELLOW);
-            break;
-        case _ADJUST:
-            rgb_matrix_set_color(0, RGB_GREEN);
-            rgb_matrix_set_color(36, RGB_GREEN);
-            break;
-        default:
-            break;
-    }
 }
