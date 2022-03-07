@@ -1,6 +1,6 @@
 #ifdef LUNA_ENABLE
 /* KEYBOARD PET START */
-
+#include "images.c"
 /* settings */
 #define MIN_WALK_SPEED 10
 #define MIN_RUN_SPEED 40

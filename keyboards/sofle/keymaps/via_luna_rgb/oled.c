@@ -18,7 +18,7 @@
 //Sets up what the OLED screens display.
 #ifdef OLED_ENABLE
 #include <stdio.h>
-#include "images.c"
+
 #ifdef LUNA_ENABLE
 #include "luna.c"
 #endif
@@ -61,9 +61,6 @@ static void print_status_narrow(void) {
         case _QWERTY:
             oled_write_ln_P(PSTR("QWRTY"), false);
             break;
-        case _GAMING:
-            oled_write_ln_P(PSTR("GAME"), false);
-            break;
         default:
             oled_write_ln_P(PSTR("UNDEF"), false);
     }
@@ -77,7 +74,6 @@ static void print_status_narrow(void) {
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-        case _GAMING:
             oled_write("Base\n", false);
             break;
         case _LOWER:
@@ -87,7 +83,10 @@ static void print_status_narrow(void) {
             oled_write_ln("Raise", false);
             break;
         case _ADJUST:
-            oled_write_ln("Adj", false);
+            oled_write_ln("Adjus", false);
+            break;
+        case _MOUSE:
+            oled_write_ln("Mouse", false);
             break;
         default:
             oled_write_ln("Undef", false);
@@ -118,13 +117,13 @@ static void print_slave_narrow(void) {
         render_bongo();
     #endif
     /* wpm counter */
-    char wpm_str[8];
-    oled_set_cursor(0,14);
-    sprintf(wpm_str, " %03d", get_current_wpm());
-    oled_write(wpm_str, false);
+    // char wpm_str[8];
+    // oled_set_cursor(0,14);
+    // sprintf(wpm_str, " %03d", get_current_wpm());
+    // oled_write(wpm_str, false);
 
-    oled_set_cursor(0,15);
-    oled_write(" wpm", false);
+    // oled_set_cursor(0,15);
+    // oled_write(" wpm", false);
 }
 #endif
 
