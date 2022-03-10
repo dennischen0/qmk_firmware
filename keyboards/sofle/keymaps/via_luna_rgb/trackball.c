@@ -40,7 +40,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         last_mouse_activity = timer_read32();
         memcpy(&last_mouse_report, &mouse_report, sizeof(mouse_report));
     }
-    if (layer_state_is(_RAISE)) {
+    if (layer_state_is(_RAISE) || layer_state_is(_LOWER)) {
         is_scrolling = true;
         pointing_device_set_cpi(2000);
         mouse_report.h = mouse_report.x;
