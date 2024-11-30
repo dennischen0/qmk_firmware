@@ -6,7 +6,8 @@
         "mousekey": true,
         "nkro": true,
         "encoder": true,
-        "oled": true
+        "oled": true,
+        "rgb_matrix": true
     },
     "build": {
         "lto": true
@@ -37,10 +38,18 @@
         "split_count": [36, 36],
         "sleep": true
     },
+    "development_board": "promicro",
     "rgb_matrix": {
         "driver": "ws2812",
         "split_count": [36, 36],
         "sleep": true,
+        "animations": {
+            "cycle_pinwheel": true
+        },
+        "default": {
+            "animation": "cycle_pinwheel",
+            "speed": 20
+        },
         "layout": [
             {"x": 96, "y": 40, "flags": 8},
             {"x": 16, "y": 20, "flags": 2},

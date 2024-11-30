@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|Pg Up | Left | Down | Rigth|      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      | Undo |  Cut | Copy | Paste|      |-------|    |-------|      |      |      |      |      |      |
+ * |      | Undo |  Cut | Copy | Paste|      |-------|    |-------|RGB TG|RGB NX|RGB SD|RGB SU|      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            |      |      |      |      | /       /       \      \  |      |      |      |      |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
@@ -82,14 +82,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,                           _______, _______, _______, KC_MINS, KC_EQL,  _______, \
   _______, KC_INS,  KC_PSCR, KC_APP,  XXXXXXX, XXXXXXX,                           KC_PGUP, XXXXXXX, KC_UP,   KC_LBRC, KC_RBRC, KC_DEL,  \
   _______, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, KC_CAPS,                           KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_HOME, \
-  _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PSTE, XXXXXXX, _______,         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_END,  \
+  _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PSTE, XXXXXXX, _______,         _______, RM_TOGG, RM_NEXT, RM_SPDD, RM_SPDU, XXXXXXX, KC_END,  \
               _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______ \
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | RESET|      |QWERTY|GAMING|      |      |                    |      |      |      |      |      |      |
+ * | QK_BOOT|      |QWERTY|GAMING|      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |MACWIN|      |      |      |-------.    ,-------|      | VOLDO| MUTE | VOLUP|      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT( \
   XXXXXXX, XXXXXXX, XXXXXXX ,    XXXXXXX,     XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  RESET  , XXXXXXX, DF(_QWERTY), XXXXXXX,     XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  QK_BOOT, XXXXXXX, DF(_QWERTY), XXXXXXX,     XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX, XXXXXXX, CG_TOGG,     XXXXXXX,     RGB_SPD, RGB_SPI,                       XXXXXXX, KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX, \
   XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX,     RGB_TOG, RGB_MOD, XXXXXXX,     XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX, \
                         _______, _______, _______, _______, _______,              _______, _______, _______, _______, _______ \

@@ -36,7 +36,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         pimoroni_trackball_set_rgbw(0,153,95,0);
     #endif
 
-    if (has_mouse_report_changed(last_mouse_report, mouse_report)) {
+    if (has_mouse_report_changed(&last_mouse_report, &mouse_report)) {
         last_mouse_activity = timer_read32();
         memcpy(&last_mouse_report, &mouse_report, sizeof(mouse_report));
     }

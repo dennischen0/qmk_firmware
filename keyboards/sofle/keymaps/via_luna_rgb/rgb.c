@@ -37,7 +37,7 @@ void keyboard_post_init_user(void) {
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-void rgb_matrix_indicators_kb() {
+bool rgb_matrix_indicators_kb() {
 
     RGB rgb;
     
@@ -70,5 +70,7 @@ void rgb_matrix_indicators_kb() {
     }
     rgb_matrix_set_color(0, rgb.r, rgb.g, rgb.b);
     rgb_matrix_set_color(36, rgb.r, rgb.g, rgb.b);
+
+    return true;
 }
 #endif

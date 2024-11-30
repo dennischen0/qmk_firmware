@@ -58,8 +58,11 @@ for more options.
 /* ws2812 RGB LED */
 #define RGB_DI_PIN D3
 
+/* ws2812 RGB LED */
+#define WS2812_DI_PIN D3
+
 #ifdef RGB_MATRIX_ENABLE
-#define RGB_DISABLE_WHEN_USB_SUSPENDED // turn off effects when suspended
+#define RGB_MATRIX_SLEEP // turn off effects when suspended
 #define SPLIT_LAYER_STATE_ENABLE
 
 #define RGBLED_NUM 72
@@ -72,7 +75,7 @@ for more options.
 #define RGB_MATRIX_STARTUP_SPD 20
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-#define RGB_MATRIX_SPLIT {36,36}
+// #define RGB_MATRIX_SPLIT {36,37} #redefined
 #define SPLIT_TRANSPORT_MIRROR
 #define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
 // #define ENABLE_RGB_MATRIX_MULTISPLASH
