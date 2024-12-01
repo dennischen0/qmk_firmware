@@ -77,7 +77,7 @@ for more options.
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 // #define RGB_MATRIX_SPLIT {36,37} #redefined
 #define SPLIT_TRANSPORT_MIRROR
-#define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
+// #define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
 // #define ENABLE_RGB_MATRIX_MULTISPLASH
 #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_PINWHEEL // Sets the default mode, if none has been set
 
