@@ -5,6 +5,7 @@ LTO_ENABLE = yes
 RGBLIGHT_ENABLE = no
 WPM_ENABLE = yes
 OLED_ENABLE = yes
+OS_DETECTION_ENABLE = yes
 
 # Not necessary anymore
 # OLED_DRIVER = SSD1306

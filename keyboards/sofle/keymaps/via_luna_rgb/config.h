@@ -30,7 +30,8 @@ for more options.
 
 ///https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
 
-#define EE_HANDS
+// shouldn't be needed due to using pin d2 for the split
+#define EE_HANDS 
 
 #ifdef LEFT_BOARD
     #ifdef OLED_ENABLE
@@ -48,6 +49,7 @@ for more options.
 //#define NO_ACTION_TAPPING enabling this breaks layers
 #define NO_ACTION_ONESHOT
 
+#define SPLIT_MODS_ENABLE
 #define SPLIT_WPM_ENABLE
 #define SPLIT_OLED_ENABLE
 #define OLED_FADE_OUT
@@ -62,55 +64,57 @@ for more options.
 #define WS2812_DI_PIN D3
 
 #ifdef RGB_MATRIX_ENABLE
-#define RGB_MATRIX_SLEEP // turn off effects when suspended
-#define SPLIT_LAYER_STATE_ENABLE
+    #define RGB_DISABLE_WHEN_USB_SUSPENDED // turn off effects when suspended
+    #define RGB_MATRIX_SLEEP // turn off effects when suspended
+    #define RGB_MATRIX_TIMEOUT 30000 // number of milliseconds to wait until rgb automatically turns off
+    #define SPLIT_LAYER_STATE_ENABLE
 
-#define RGBLED_NUM 72
-#define DRIVER_LED_TOTAL RGBLED_NUM
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
-#define RGB_MATRIX_HUE_STEP 8
-#define RGB_MATRIX_SAT_STEP 8
-#define RGB_MATRIX_VAL_STEP 8
-#define RGB_MATRIX_SPD_STEP 10
-#define RGB_MATRIX_STARTUP_SPD 20
-#define RGB_MATRIX_KEYPRESSES
-#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-// #define RGB_MATRIX_SPLIT {36,37} #redefined
-#define SPLIT_TRANSPORT_MIRROR
-// #define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
-// #define ENABLE_RGB_MATRIX_MULTISPLASH
-#define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_PINWHEEL // Sets the default mode, if none has been set
+    #define RGBLED_NUM 72
+    #define DRIVER_LED_TOTAL RGBLED_NUM
+    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
+    #define RGB_MATRIX_HUE_STEP 8
+    #define RGB_MATRIX_SAT_STEP 8
+    #define RGB_MATRIX_VAL_STEP 8
+    #define RGB_MATRIX_SPD_STEP 10
+    #define RGB_MATRIX_STARTUP_SPD 20
+    #define RGB_MATRIX_KEYPRESSES
+    #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+    // #define RGB_MATRIX_SPLIT {36,36} #redefined
+    #define SPLIT_TRANSPORT_MIRROR
+    // #define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
+    // #define ENABLE_RGB_MATRIX_MULTISPLASH
+    #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_PINWHEEL // Sets the default mode, if none has been set
 
-/* Disable the animations you don't want/need.  You will need to disable a good number of these    *
- * because they take up a lot of space.  Disable until you can successfully compile your firmware. */
- // #   undef ENABLE_RGB_MATRIX_ALPHAS_MODS
- // #   undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
- // #   undef ENABLE_RGB_MATRIX_BREATHING
- // #   undef ENABLE_RGB_MATRIX_CYCLE_ALL
- // #   undef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
- // #   undef ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
- // #   undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN
- // #   undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL
- // #   undef ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
- // #   undef ENABLE_RGB_MATRIX_DUAL_BEACON
- // #   undef ENABLE_RGB_MATRIX_RAINBOW_BEACON
- // #   undef ENABLE_RGB_MATRIX_RAINBOW_PINWHEELS
- // #   undef ENABLE_RGB_MATRIX_RAINDROPS
- // #   undef ENABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
- // #   undef ENABLE_RGB_MATRIX_TYPING_HEATMAP
- // #   undef ENABLE_RGB_MATRIX_DIGITAL_RAIN
- // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE
- // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
- // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
- // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
- // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
- // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
- // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
- // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
- // #   undef ENABLE_RGB_MATRIX_SPLASH
- // #   undef ENABLE_RGB_MATRIX_MULTISPLASH
- // #   undef ENABLE_RGB_MATRIX_SOLID_SPLASH
- // #   undef ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
+    /* Disable the animations you don't want/need.  You will need to disable a good number of these    *
+    * because they take up a lot of space.  Disable until you can successfully compile your firmware. */
+    // #   undef ENABLE_RGB_MATRIX_ALPHAS_MODS
+    // #   undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
+    // #   undef ENABLE_RGB_MATRIX_BREATHING
+    // #   undef ENABLE_RGB_MATRIX_CYCLE_ALL
+    // #   undef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
+    // #   undef ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
+    // #   undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN
+    // #   undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL
+    // #   undef ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
+    // #   undef ENABLE_RGB_MATRIX_DUAL_BEACON
+    // #   undef ENABLE_RGB_MATRIX_RAINBOW_BEACON
+    // #   undef ENABLE_RGB_MATRIX_RAINBOW_PINWHEELS
+    // #   undef ENABLE_RGB_MATRIX_RAINDROPS
+    // #   undef ENABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
+    // #   undef ENABLE_RGB_MATRIX_TYPING_HEATMAP
+    // #   undef ENABLE_RGB_MATRIX_DIGITAL_RAIN
+    // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE
+    // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+    // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
+    // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
+    // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
+    // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
+    // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
+    // #   undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
+    // #   undef ENABLE_RGB_MATRIX_SPLASH
+    // #   undef ENABLE_RGB_MATRIX_MULTISPLASH
+    // #   undef ENABLE_RGB_MATRIX_SOLID_SPLASH
+    // #   undef ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 
 #endif
 

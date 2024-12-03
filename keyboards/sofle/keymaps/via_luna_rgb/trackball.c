@@ -1,7 +1,8 @@
 #if defined(POINTING_DEVICE_ENABLE) && defined(RIGHT_BOARD)
 #include <string.h>
+#include <stdint.h>
+#include <stdbool.h>
 #include "lib/lib8tion/lib8tion.h"
-
 static uint32_t       last_mouse_activity = 0;
 static report_mouse_t last_mouse_report   = {0};
 static bool           is_scrolling        = false;
@@ -32,8 +33,27 @@ static bool           is_scrolling        = false;
 //     return mouse_report;
 // }
 
+// Function to set RGB values
+// static uint8_t hue = 0;
+// void update_trackball_rgb(void) {
+//     HSV hsv = {hue, 255, 255};
+//     // Convert hue to RGB
+//     RGB rgb = hsv_to_rgb(hsv);
+
+//     // Set the RGB values
+//     pimoroni_trackball_set_rgbw(rgb.r, rgb.g, rgb.b, 0);
+
+//     // Increment hue for the next call
+//     hue += 1;
+//     if (hue == 255) {
+//         hue = 0;
+//     }
+// }
+
+
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     pimoroni_trackball_set_rgbw(0,153,95,0);
+    // update_trackball_rgb();
 
     if (has_mouse_report_changed(&last_mouse_report, &mouse_report)) {
         last_mouse_activity = timer_read32();

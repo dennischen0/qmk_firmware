@@ -46,10 +46,14 @@ static void oled_sleep(void) {
 
 #ifdef LEFT_BOARD
 static void print_status_narrow(void) {
+    os_variant_t host_os = detected_host_os();
+#ifdef CONSOLE_ENABLE 
+    uprintf("%s %d string\n", host_os == OS_MACOS ? "macOS" : "Windows", host_os);
+#endif
     // Print current mode
     oled_set_cursor(0,0);
 
-    if (keymap_config.swap_lctl_lgui) {
+    if (host_os != OS_MACOS) {
         oled_write_compressed_P(mac_logo_block_x_map, mac_logo_block_x_list, 0, LOGO_BYTES);
     } else {
         oled_write_compressed_P(windows_logo_block_x_map, windows_logo_block_x_list, 0, LOGO_BYTES);
